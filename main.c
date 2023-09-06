@@ -6,7 +6,7 @@ void toDoList_menu(const char *file_name)
 {
     while (1){
         int opt = 0;
-        printf("1. Add\n2. Delete\n3. Update\n4. List\n5. Save\n6. Main Menu\n7. Exit\nOpt: ");
+        printf("\n1. Add\n2. Delete\n3. Update\n4. List\n5. Save\n6. Main Menu\n7. Exit\n\nOpt: ");
         scanf("%d", &opt);
         switch (opt) {
             char task[MAX_TASK_LEN], date[11], fileName[MAX_FILE_NAME];
@@ -17,13 +17,13 @@ void toDoList_menu(const char *file_name)
                 printf("Date: ");
                 scanf(" %99[^\n]", date);
                 node_pushBack(task, lastDate_strToDate(date));
-                printf("Task was added to list\n");
+                printf("\nTask was added to the list\n");
                 break;
             case 2://delete
                 printf("Index: ");
                 scanf("%"SCNuMAX, &in);
                 node_delete(in - 1);
-                printf("Task was deleted to list\n");
+                printf("\nTask was deleted from the list\n");
                 break;
             case 3://update
                 printf("Index: ");
@@ -32,8 +32,8 @@ void toDoList_menu(const char *file_name)
                 scanf(" %99[^\n]", task);
                 printf("New Date: ");
                 scanf(" %99[^\n]", date);
-                node_update(in + 1, task, lastDate_strToDate(date));
-                printf("Task was updated\n");
+                node_update(in - 1, task, lastDate_strToDate(date));
+                printf("\nTask was updated\n");
                 break;
             case 4:
                 toDoList_display();
@@ -41,13 +41,13 @@ void toDoList_menu(const char *file_name)
             case 5:
                 if(file_name){
                     toDoList_save(file_name);
-                    printf("Tasks was saved to %s\n", file_name);
+                    printf("\nThe list was saved to %s\n", file_name);
                     break;
                 }
                 printf("File Name: ");
                 scanf(" %99[^\n]", fileName);
                 toDoList_save(fileName);
-                printf("Tasks was saved to %s\n", fileName);
+                printf("\nthe list was saved to %s\n", fileName);
                 break;
             case 6:
                 return;
@@ -55,7 +55,7 @@ void toDoList_menu(const char *file_name)
                 printf("Exiting...\n");
                 exit(EXIT_SUCCESS);
             default:
-                fprintf(stderr, "You've entered the wrong option!\n");
+                fprintf(stderr, "\nYou've entered the wrong option!\n");
                 break;
         }
     }
@@ -93,10 +93,10 @@ int main() {
                 toDoList_menu(file_name);
                 break;
             case 3:
-                printf("Exiting...");
+                printf("Exiting...\n");
                 exit(EXIT_SUCCESS);
             default:
-                printf("You've entered the worong option!\n");
+                printf("You've entered the wrong option!\n");
                 break;
         }
     }
